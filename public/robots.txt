@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my-website-dheeram.vercel.app/sitemap.xml
