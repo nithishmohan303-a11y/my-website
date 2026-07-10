@@ -1,0 +1,48 @@
+.gold-dust{
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 15;
+
+    overflow: hidden;
+}
+
+.dust{
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: #FFD700;
+
+    box-shadow:
+        0 0 6px #FFD700,
+        0 0 12px rgba(255,215,0,.8);
+
+    opacity: .35;
+
+    animation: dustFloat linear infinite;
+}
+
+@keyframes dustFloat{
+
+    0%{
+        transform: translateY(0px) translateX(0px);
+        opacity:.15;
+    }
+
+    50%{
+        transform: translateY(-80px) translateX(20px);
+        opacity:.55;
+    }
+
+    100%{
+        transform: translateY(-180px) translateX(-20px);
+        opacity:0;
+    }
+
+}
