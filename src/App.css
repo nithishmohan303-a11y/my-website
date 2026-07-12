@@ -1013,11 +1013,11 @@ letter-spacing:1px;
     align-items:center;
     text-align:center;
     min-height:auto;
-    padding:24px 16px 48px;
-    gap:28px;
+    padding:24px 20px 48px;
+    gap:24px;
     margin-bottom:32px;
-    overflow-x:hidden;
-  }
+    overflow:hidden;
+}
 
   .hero-left{
     flex:none;
@@ -1078,7 +1078,7 @@ letter-spacing:1px;
   }
 
   .hero-photo-wrapper{
-    width:min(220px, 60vw);
+    width:200px;
     height:auto;
     aspect-ratio:1 / 1;
     border-radius:50%;
