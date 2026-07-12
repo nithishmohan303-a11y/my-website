@@ -1092,6 +1092,11 @@ letter-spacing:1px;
     width:96%;
     height:96%;
   }
+  .hero-photo-wrapper::before{
+    width:108%;
+    height:108%;
+    filter:blur(20px);
+}
 
   /* ── About ── */
   .about-card{
