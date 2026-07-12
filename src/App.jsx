@@ -59,6 +59,7 @@ ${message}`;
 function App() {
 
   const [loading, setLoading] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -67,6 +68,15 @@ function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   if (loading) {
     return <SplashScreen />;
@@ -93,7 +103,19 @@ function App() {
 
 </div>
 
-  <ul className="nav-links">
+  <button
+    type="button"
+    className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
+    onClick={() => setMenuOpen((open) => !open)}
+    aria-label="Toggle navigation menu"
+    aria-expanded={menuOpen}
+  >
+    <span className="hamburger-line" />
+    <span className="hamburger-line" />
+    <span className="hamburger-line" />
+  </button>
+
+  <ul className="nav-links desktop-nav">
 
     <li><a href="#hero">Home</a></li>
 
@@ -105,6 +127,16 @@ function App() {
     <li><a href="#gallery">Gallery</a></li>
 
   </ul>
+
+  <div className={`mobile-menu${menuOpen ? " is-open" : ""}`} aria-hidden={!menuOpen}>
+    <ul className="mobile-nav-links">
+      <li><a href="#hero" onClick={closeMenu}>Home</a></li>
+      <li><a href="#about" onClick={closeMenu}>About</a></li>
+      <li><a href="#companies" onClick={closeMenu}>Companies</a></li>
+      <li><a href="#gallery" onClick={closeMenu}>Gallery</a></li>
+      <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
+    </ul>
+  </div>
 
 </nav>
 
