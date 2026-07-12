@@ -849,7 +849,10 @@ letter-spacing:1px;
     display:flex;
     flex-direction:row;
     align-items:center;
-    gap:10px;
+    justify-content:flex-start;
+    gap:12px;
+    flex:1;
+    min-width:0;
 }
 
   .logo-img{
@@ -859,20 +862,23 @@ letter-spacing:1px;
 }
 
   .logo-text{
+    flex:1;
     min-width:0;
-    overflow:visible;
-  }
+}
 
   .logo-text h3{
-    font-size:18px;
+    font-size:15px;
     line-height:1.2;
     white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
   .desktop-nav{
     display:none !important;
   }
 
   .hamburger-btn{
+    margin-left:12px;
     display:flex;
     flex-direction:column;
     justify-content:center;
