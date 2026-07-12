@@ -834,17 +834,6 @@ letter-spacing:1px;
     max-width:100%;
   }
 
-  .splash-title{
-    margin-top:16px;
-    font-size:clamp(1.25rem, 4.2vw, 1.9rem);
-    line-height:1.35;
-    letter-spacing:1px;
-    white-space:normal;
-    text-align:center;
-    padding:0 12px;
-    max-width:min(100%, 320px);
-    word-break:break-word;
-  }
 
   /* ── Navbar + Hamburger Menu ── */
   .navbar{
@@ -1982,7 +1971,7 @@ max-width:100%;
     z-index:99999;
 
     overflow:hidden;
-    gap:12px;
+padding:20px;
 }
 
 .splash-screen::before{
