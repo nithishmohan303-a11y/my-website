@@ -2006,15 +2006,19 @@ padding:20px;
     margin-top:40px;
 
     font-family:"Cinzel", serif;
-    font-size:52px;
+    font-size:clamp(26px,6vw,52px);
     font-weight:800;
 
     color:#FFD700;
 
     text-align:center;
-    line-height:1.4;
-    letter-spacing:3px;
-    white-space:nowrap;
+    line-height:1.3;
+    letter-spacing:1px;
+
+    white-space:normal;
+    word-break:break-word;
+
+    max-width:90vw;
 
     z-index:2;
 
