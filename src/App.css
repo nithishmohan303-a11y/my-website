@@ -131,11 +131,9 @@ section{
 
 .logo img,
 .logo-img{
-    width:65px;
-    height:65px;
-    object-fit:contain;
-    transition:0.5s ease;
-    cursor:pointer;
+    width:100px;
+    height:50px;
+    flex-shrink:0;
 }
 
 .logo img:hover{
@@ -145,10 +143,12 @@ section{
 
 .logo-text h2,
 .logo-text h3{
-  color:#FFD700;
-  font-size:28px;
-  letter-spacing:1px;
-  margin:0;
+    font-size:1.4rem;
+    font-weight:800;
+    color:#FFD700;
+    letter-spacing:0.5px;
+    margin:0;
+    background:transparent;
 }
 
 .logo-text p{
@@ -849,10 +849,10 @@ letter-spacing:1px;
 .logo{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    width:100%;
-    gap:10px;
-    flex:1;
+    justify-content:flex-start;
+    width:auto;
+    gap:4px;
+    flex:0;
 }
 
   .logo-img{
@@ -861,8 +861,8 @@ letter-spacing:1px;
 }
 
   .logo-text{
-    flex:1;
-    min-width:0;
+    flex:none;
+    min-width:auto;
 }
 
 .logo-text h3{
@@ -876,7 +876,7 @@ letter-spacing:1px;
   }
 
   .hamburger-btn{
-    margin-left:12px;
+    margin-left:auto;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -1315,21 +1315,35 @@ filter:blur(12px);
 .hamburger-btn{
     flex-shrink:0;
 }
+.logo-img{
+    width:40px;
+    height:40px;
+}
+
+.logo-text h3{
+    font-size:1.15rem;
+    font-weight:1000;
+}
 
 }
 
 @media (max-width:480px){
 
-  .logo img,
-  .logo-img{
-    width:38px;
-    height:38px;
-  }
+ .logo-img{
+    width:52px;
+    height:52px;
+    flex-shrink:0;
+}
 
   .logo-text h3{
-    font-size:clamp(10px, 2.8vw, 12px);
-    letter-spacing:0.3px;
-  }
+    background: red !important;
+    font-size:1.3rem;
+    font-weight:800;
+    color:#FFD700;
+    letter-spacing:0.5px;
+    white-space:nowrap;
+    margin:0;
+}
 
   .hero-left h1{
     font-size:clamp(1.6rem, 8vw, 2rem);
