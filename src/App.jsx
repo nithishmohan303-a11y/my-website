@@ -60,6 +60,29 @@ function App() {
 
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const galleryImages = [
+  founder1,
+  founder2,
+  meeting1,
+  meeting2,
+  award1,
+  office1,
+];
+
+const [selectedImage, setSelectedImage] = useState(null);
+
+const nextImage = () => {
+  const currentIndex = galleryImages.indexOf(selectedImage);
+  const nextIndex = (currentIndex + 1) % galleryImages.length;
+  setSelectedImage(galleryImages[nextIndex]);
+};
+
+const prevImage = () => {
+  const currentIndex = galleryImages.indexOf(selectedImage);
+  const prevIndex =
+    (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  setSelectedImage(galleryImages[prevIndex]);
+};
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -354,32 +377,19 @@ function App() {
 
   <div className="gallery-grid">
 
-    <div className="gallery-item">
-  <img src={founder1} alt="Founder 1" />
-</div>
-
-<div className="gallery-item">
-  <img src={founder2} alt="Founder 2" />
-</div>
-
-<div className="gallery-item">
-  <img src={meeting1} alt="Meeting 1" />
-</div>
-
-<div className="gallery-item">
-  <img src={meeting2} alt="Meeting 2" />
-</div>
-
-<div className="gallery-item">
-  <img src={award1} alt="Award" />
-</div>
-
-<div className="gallery-item">
-  <img src={office1} alt="Office" />
-</div>
-
+    {galleryImages.map((image, index) => (
+  <div
+    key={index}
+    className="gallery-item"
+    onClick={() => setSelectedImage(image)}
+  >
+    <img
+      src={image}
+      alt={`Gallery ${index + 1}`}
+    />
   </div>
-  </section>
+))}
+</div>
 </section>
 
   <div id="contact" className="contact">
@@ -456,6 +466,46 @@ function App() {
   </div>
 
 </div>
+{selectedImage && (
+  <div
+    className="gallery-popup"
+    onClick={() => setSelectedImage(null)}
+  >
+    <button
+      className="close-btn"
+      onClick={() => setSelectedImage(null)}
+    >
+      ✕
+    </button>
+
+    <button
+      className="nav-btn left"
+      onClick={(e) => {
+        e.stopPropagation();
+        prevImage();
+      }}
+    >
+      ❮
+    </button>
+
+    <img
+      src={selectedImage}
+      alt="Gallery Preview"
+      className="popup-image"
+      onClick={(e) => e.stopPropagation()}
+    />
+
+    <button
+      className="nav-btn right"
+      onClick={(e) => {
+        e.stopPropagation();
+        nextImage();
+      }}
+    >
+      ❯
+    </button>
+  </div>
+)}
 
 <footer className="footer fade-up">
 
@@ -466,6 +516,7 @@ function App() {
   <p>© 2026 DHEERAM GROUP OF COMPANIES. All Rights Reserved.</p>
 
 </footer>
+</section>
       </main>
     </>
   );
