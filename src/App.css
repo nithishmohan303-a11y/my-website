@@ -144,7 +144,7 @@ section{
 .logo-text h2,
 .logo-text h3{
     font-size:1.4rem;
-    font-weight:800;
+    font-weight:1500;
     color:#FFD700;
     letter-spacing:0.5px;
     margin:0;
@@ -1322,7 +1322,7 @@ filter:blur(12px);
 
 .logo-text h3{
     font-size:1.15rem;
-    font-weight:2000;
+    font-weight:1000;
 }
 
 }
