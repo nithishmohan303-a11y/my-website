@@ -1086,14 +1086,19 @@ letter-spacing:1px;
     padding-top:0;
     margin:0 auto;
     flex-shrink:0;
+    width: 350px !important;
+height: 350px !important;
+max-width: 350px !important;
 }
 
   .hero-image{
-    width:96%;
-    height:96%;
-  }
+    width:100%;
+    height:110%;
+    object-fit:cover;
+    object-position:center top;
+    transform:scale(1.08) translateY(20px);
+}
   .hero-photo-wrapper::before{
-    background:red !important;
     width:100%;
 height:100%;
 filter:blur(12px);
