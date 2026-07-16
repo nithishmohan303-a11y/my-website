@@ -69,21 +69,6 @@ function App() {
   office1,
 ];
 
-const [selectedImage, setSelectedImage] = useState(null);
-
-const nextImage = () => {
-  const currentIndex = galleryImages.indexOf(selectedImage);
-  const nextIndex = (currentIndex + 1) % galleryImages.length;
-  setSelectedImage(galleryImages[nextIndex]);
-};
-
-const prevImage = () => {
-  const currentIndex = galleryImages.indexOf(selectedImage);
-  const prevIndex =
-    (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-  setSelectedImage(galleryImages[prevIndex]);
-};
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -381,7 +366,6 @@ const prevImage = () => {
   <div
     key={index}
     className="gallery-item"
-    onClick={() => setSelectedImage(image)}
   >
     <img
       src={image}
@@ -466,46 +450,6 @@ const prevImage = () => {
   </div>
 
 </div>
-{selectedImage && (
-  <div
-    className="gallery-popup"
-    onClick={() => setSelectedImage(null)}
-  >
-    <button
-      className="close-btn"
-      onClick={() => setSelectedImage(null)}
-    >
-      ✕
-    </button>
-
-    <button
-      className="nav-btn left"
-      onClick={(e) => {
-        e.stopPropagation();
-        prevImage();
-      }}
-    >
-      ❮
-    </button>
-
-    <img
-      src={selectedImage}
-      alt="Gallery Preview"
-      className="popup-image"
-      onClick={(e) => e.stopPropagation()}
-    />
-
-    <button
-      className="nav-btn right"
-      onClick={(e) => {
-        e.stopPropagation();
-        nextImage();
-      }}
-    >
-      ❯
-    </button>
-  </div>
-)}
 
 <footer className="footer fade-up">
 
@@ -518,6 +462,7 @@ const prevImage = () => {
 </footer>
 </section>
       </main>
+
     </>
   );
 }
