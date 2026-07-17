@@ -164,11 +164,7 @@ function App() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <h1>
-              MR. A.
-              <br />
-              DEVAGANDHAN
-            </h1>
+            <h1>MR. A. DEVAGANDHAN</h1>
 
             <h2 style={{ color: "#FFD700" }}>
   Founder & CEO
