@@ -305,6 +305,7 @@ section{
 @media (min-width:1024px){
   .hero-left h1{
     white-space:nowrap;
+    font-size:clamp(2.35rem, 5.25vw, 4.35rem);
   }
 
   .hero-image{
@@ -686,7 +687,7 @@ letter-spacing:1px;
     }
 
     50%{
-        transform:translateY(-12px);
+        transform:translateY(-8px);
     }
 
     100%{
