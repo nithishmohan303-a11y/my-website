@@ -300,6 +300,18 @@ section{
 
     animation:float 6s ease-in-out infinite;
 }
+
+/* Desktop-only hero refinements (1024px+) */
+@media (min-width:1024px){
+  .hero-left h1{
+    white-space:nowrap;
+  }
+
+  .hero-image{
+    top:18px;
+    height:calc(100% + 30px);
+  }
+}
 /* ==================================================
    ABOUT SECTION
 ================================================== */
@@ -1882,7 +1894,7 @@ box-shadow:
     0 0 60px rgba(255,215,0,.80),
     0 0 120px rgba(255,215,0,.45);
 position: relative;
-animation: ringGlow 3s ease-in-out infinite;
+animation: ringGlow 5s ease-in-out infinite;
 
 }
 
@@ -1949,20 +1961,23 @@ pointer-events: none;
 
     0%{
         box-shadow:
-            0 0 25px rgba(255,215,0,.25),
-            0 0 60px rgba(255,215,0,.10);
+            0 0 22px rgba(255,215,0,.28),
+            0 0 55px rgba(255,215,0,.14),
+            0 0 100px rgba(255,215,0,.08);
     }
 
     50%{
         box-shadow:
-            0 0 50px rgba(255,215,0,.60),
-            0 0 120px rgba(255,215,0,.30);
+            0 0 36px rgba(255,215,0,.52),
+            0 0 80px rgba(255,215,0,.28),
+            0 0 140px rgba(255,215,0,.16);
     }
 
     100%{
         box-shadow:
-            0 0 25px rgba(255,215,0,.25),
-            0 0 60px rgba(255,215,0,.10);
+            0 0 22px rgba(255,215,0,.28),
+            0 0 55px rgba(255,215,0,.14),
+            0 0 100px rgba(255,215,0,.08);
     }
 
 }

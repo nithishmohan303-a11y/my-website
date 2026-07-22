@@ -158,17 +158,23 @@ function App() {
 </div>
         
 
-          <motion.div
-            className="hero-left"
-            initial={{ opacity: 0, x: -80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <h1>MR. A. DEVAGANDHAN</h1>
+          <div className="hero-left">
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              MR. A. DEVAGANDHAN
+            </motion.h1>
 
-            <h2 style={{ color: "#FFD700" }}>
-  Founder & CEO
-</h2>
+            <motion.h2
+              style={{ color: "#FFD700" }}
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            >
+              FOUNDER & CEO
+            </motion.h2>
             <h3>Dheeram Group of Companies</h3>
             <div className="gold-divider"></div>
             <p className="welcome">
@@ -178,12 +184,15 @@ function App() {
             <motion.a
               href="#about"
               className="hero-btn"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Explore More
             </motion.a>
-          </motion.div>
+          </div>
 
           <motion.div
             className="hero-right"
