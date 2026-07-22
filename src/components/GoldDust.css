@@ -7,6 +7,9 @@
     z-index: 15;
 
     overflow: hidden;
+
+    /* Hide dust over the hero; keep it for About + sections below */
+    clip-path: inset(var(--hero-particle-clip, 100vh) 0 0 0);
 }
 
 .dust{

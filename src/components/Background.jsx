@@ -23,6 +23,7 @@ function MovingLight() {
 export default function Background() {
   return (
     <div
+      className="site-sparkle-bg"
       style={{
         position: "fixed",
         top: 0,

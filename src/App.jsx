@@ -12,7 +12,6 @@ import { motion, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import logo from "./images/dheeram.png";
 import SplashScreen from "./components/SplashScreen";
-import CursorGlow from "./components/CursorGlow";
 function Counter({ from = 0, to }) {
   const [value, setValue] = useState(from);
 
@@ -56,18 +55,61 @@ ${message}`;
 
   window.open(url, "_blank");
 }
-function App() {
+/* Hero gold dust — denser on sides (~30% more), center stays clear */
+const HERO_PARTICLES = (() => {
+  const list = [];
+  /* Very small / small / medium — no large specs */
+  const SIZES = [1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.5, 4];
+  const MOTIONS = ["rise", "diag", "drift", "twinkle"];
 
+  const pushSide = (side, count) => {
+    for (let i = 0; i < count; i += 1) {
+      const t = i / count;
+      const left =
+        side === "left"
+          ? 1.5 + t * 24 + (i % 5) * 0.85
+          : 74.5 + t * 22 + (i % 4) * 0.65;
+      const size = SIZES[i % SIZES.length];
+      const motion = MOTIONS[i % MOTIONS.length];
+      const dir = side === "left" ? 1 : -1;
+      const driftX = dir * (8 + (i % 11) * 2.2);
+      const driftY = -(55 + (i % 9) * 12);
+
+      list.push({
+        id: `${side}-${i}`,
+        left: `${left}%`,
+        top: `${5 + ((i * 17) % 86)}%`,
+        size,
+        motion,
+        duration: 6.5 + (i % 8) * 1.55 + (size > 3 ? 1.2 : 0),
+        delay: (i % 13) * 0.48,
+        driftX: `${driftX}px`,
+        driftY: `${driftY}px`,
+        twinkleDur: `${2.4 + (i % 5) * 0.55}s`,
+      });
+    }
+  };
+
+  /* Was 40/side (80 total) → +30% ≈ 52/side (104 total) */
+  pushSide("left", 52);
+  pushSide("right", 52);
+  return list;
+})();
+
+function App() {
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const heroRef = useRef(null);
+  const nameRef = useRef(null);
+
   const galleryImages = [
-  founder1,
-  founder2,
-  meeting1,
-  meeting2,
-  award1,
-  office1,
-];
+    founder1,
+    founder2,
+    meeting1,
+    meeting2,
+    award1,
+    office1,
+  ];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -84,6 +126,74 @@ function App() {
     };
   }, [menuOpen]);
 
+  /* Fit founder name to available width — never crop */
+  useEffect(() => {
+    if (loading) return;
+
+    const nameEl = nameRef.current;
+    if (!nameEl) return;
+
+    const fitName = () => {
+      const parent = nameEl.parentElement;
+      if (!parent) return;
+
+      nameEl.style.fontSize = "";
+      const styles = getComputedStyle(nameEl);
+      let size = parseFloat(styles.fontSize);
+      const available = parent.clientWidth;
+      if (!available || !size) return;
+
+      let guard = 60;
+      while (nameEl.scrollWidth > available + 0.5 && size > 11 && guard--) {
+        size -= 0.5;
+        nameEl.style.fontSize = `${size}px`;
+      }
+    };
+
+    const runFit = () => {
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(fitName).catch(fitName);
+      } else {
+        fitName();
+      }
+    };
+
+    runFit();
+    const ro = new ResizeObserver(runFit);
+    if (nameEl.parentElement) ro.observe(nameEl.parentElement);
+    window.addEventListener("resize", runFit);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", runFit);
+    };
+  }, [loading]);
+
+  /* Keep site gold particles below the hero — hero has its own particle layer */
+  useEffect(() => {
+    if (loading) return;
+
+    const updateParticleClip = () => {
+      const hero = heroRef.current;
+      if (!hero) return;
+      const bottom = hero.getBoundingClientRect().bottom;
+      const clipTop = Math.max(0, Math.min(window.innerHeight, bottom));
+      document.documentElement.style.setProperty(
+        "--hero-particle-clip",
+        `${clipTop}px`
+      );
+    };
+
+    updateParticleClip();
+    window.addEventListener("scroll", updateParticleClip, { passive: true });
+    window.addEventListener("resize", updateParticleClip);
+
+    return () => {
+      window.removeEventListener("scroll", updateParticleClip);
+      window.removeEventListener("resize", updateParticleClip);
+    };
+  }, [loading]);
+
   const closeMenu = () => setMenuOpen(false);
 
   if (loading) {
@@ -93,7 +203,6 @@ function App() {
   return (
     <>
   <Background />
-  <CursorGlow />
   <GoldDust />
       <nav className="navbar">
 
@@ -149,70 +258,104 @@ function App() {
 </nav>
 
       <main className="background">
-        <section id="hero" className="hero">
-
-        {/* HERO SECTION */}
-        <div className="scroll-indicator">
-          
-  <span></span>
-</div>
-        
-
-          <div className="hero-left">
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            >
-              MR. A. DEVAGANDHAN
-            </motion.h1>
-
-            <motion.h2
-              style={{ color: "#FFD700" }}
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            >
-              FOUNDER & CEO
-            </motion.h2>
-            <h3>Dheeram Group of Companies</h3>
-            <div className="gold-divider"></div>
-            <p className="welcome">
-              Welcome to the Official Profile Website
-            </p>
-
-            <motion.a
-              href="#about"
-              className="hero-btn"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Explore More
-            </motion.a>
+        <section id="hero" className="hero" ref={heroRef}>
+          <div className="hero-particles" aria-hidden="true">
+            {HERO_PARTICLES.map((p) => (
+              <span
+                key={p.id}
+                className={`hero-particle hero-particle--${p.motion}`}
+                style={{
+                  left: p.left,
+                  top: p.top,
+                  width: `${p.size}px`,
+                  height: `${p.size}px`,
+                  "--hero-p-dur": `${p.duration}s`,
+                  "--hero-p-delay": `${p.delay}s`,
+                  "--hero-p-drift-x": p.driftX,
+                  "--hero-p-drift-y": p.driftY,
+                  "--hero-p-twinkle": p.twinkleDur,
+                }}
+              />
+            ))}
           </div>
 
-          <motion.div
-            className="hero-right"
-            initial={{ opacity: 0, x: 80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2 }}
-          >
-            <div className="hero-photo-wrapper">
+          <div className="hero-poster">
+            <motion.div
+              className="hero-portrait"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.35, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="hero-portrait-glow" aria-hidden="true" />
+              <div className="hero-portrait-rim" aria-hidden="true">
+                <span className="hero-ring-shine" />
+                <span className="hero-ring-shine hero-ring-shine--lag" />
+              </div>
+              <div className="hero-portrait-frame">
+                <div className="hero-portrait-float">
+                  <img
+                    src={profile}
+                    alt="Mr. A. Devagandhan"
+                    className="hero-image"
+                  />
+                </div>
+              </div>
+            </motion.div>
 
-  <div className="gold-ring"></div>
+            <div className="hero-copy">
+              <motion.h1
+                ref={nameRef}
+                className="hero-name"
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="hero-name-base">MR. A. DEVAGANDHAN</span>
+                <span className="hero-name-shine" aria-hidden="true">
+                  MR. A. DEVAGANDHAN
+                </span>
+              </motion.h1>
 
-  <img
-    src={profile}
-    alt="Mr. A. Devagandhan"
-    className="hero-image"
-  />
+              <motion.h2
+                className="hero-title"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.15, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="hero-title-line" aria-hidden="true" />
+                <span className="hero-title-text">FOUNDER &amp; CEO</span>
+                <span className="hero-title-line" aria-hidden="true" />
+              </motion.h2>
 
-</div>
-          </motion.div>
+              <motion.h3
+                className="hero-company"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.15, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
+              >
+                DHEERAM GROUP OF COMPANIES
+              </motion.h3>
 
+              <motion.p
+                className="hero-tagline"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.15, delay: 0.86, ease: [0.22, 1, 0.36, 1] }}
+              >
+                Building Leaders • Creating Legacy
+              </motion.p>
+
+              <motion.a
+                href="#about"
+                className="hero-btn"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.15, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
+              >
+                Explore More
+              </motion.a>
+            </div>
+          </div>
         </section>
 
         {/* ABOUT SECTION */}
