@@ -1,5 +1,7 @@
 import "./App.css";
 import profile from "./images/deva.png";
+import founderExperience from "./images/founder-experience.png";
+import founderSuccess from "./images/founder-success.png";
 import founder1 from "./images/gallery/founder1.jpg";
 import founder2 from "./images/gallery/founder2.jpg";
 import meeting1 from "./images/gallery/meeting1.jpg";
@@ -8,6 +10,7 @@ import award1 from "./images/gallery/award1.jpg";
 import office1 from "./images/gallery/office1.jpg";
 import Background from "./components/Background";
 import GoldDust from "./components/GoldDust";
+import SectionHeading from "./components/SectionHeading";
 import { motion, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import logo from "./images/dheeram.png";
@@ -97,7 +100,8 @@ const HERO_PARTICLES = (() => {
 })();
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [showSplash, setShowSplash] = useState(true);
+  const [appReady, setAppReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const heroRef = useRef(null);
   const nameRef = useRef(null);
@@ -111,24 +115,20 @@ function App() {
     office1,
   ];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  /* Reveal hero under the splash so the fade-out is seamless */
+  const revealApp = () => setAppReady(true);
+  const finishSplash = () => setShowSplash(false);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = showSplash || menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [menuOpen]);
+  }, [showSplash, menuOpen]);
 
   /* Fit founder name to available width — never crop */
   useEffect(() => {
-    if (loading) return;
+    if (!appReady) return;
 
     const nameEl = nameRef.current;
     if (!nameEl) return;
@@ -167,11 +167,11 @@ function App() {
       ro.disconnect();
       window.removeEventListener("resize", runFit);
     };
-  }, [loading]);
+  }, [appReady]);
 
   /* Keep site gold particles below the hero — hero has its own particle layer */
   useEffect(() => {
-    if (loading) return;
+    if (!appReady) return;
 
     const updateParticleClip = () => {
       const hero = heroRef.current;
@@ -192,15 +192,13 @@ function App() {
       window.removeEventListener("scroll", updateParticleClip);
       window.removeEventListener("resize", updateParticleClip);
     };
-  }, [loading]);
+  }, [appReady]);
 
   const closeMenu = () => setMenuOpen(false);
 
-  if (loading) {
-    return <SplashScreen />;
-  }
-
   return (
+    <>
+  {appReady && (
     <>
   <Background />
   <GoldDust />
@@ -346,7 +344,7 @@ function App() {
               </motion.p>
 
               <motion.a
-                href="#about"
+                href="#experience"
                 className="hero-btn"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -355,6 +353,89 @@ function App() {
                 Explore More
               </motion.a>
             </div>
+          </div>
+        </section>
+
+        {/* EXPERIENCE SECTION — between Hero and About Founder */}
+        <section id="experience" className="experience">
+          <div className="experience-inner">
+            <motion.div
+              className="experience-visual"
+              initial={{ opacity: 0, x: -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.35 }}
+            >
+              <img
+                src={founderExperience}
+                alt="Mr. A. Devagandhan with luxury car"
+                className="experience-image"
+                draggable={false}
+              />
+            </motion.div>
+
+            <motion.div
+              className="experience-copy"
+              initial={{ opacity: 0, x: 70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.15, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.35 }}
+            >
+              <h2 className="experience-heading">18+ YEARS OF EXPERIENCE</h2>
+              <p>
+                With over 18 years of experience in the Network Marketing industry,
+                Mr. A. Devagandhan has inspired thousands of people through leadership,
+                business development, mentorship, and entrepreneurial vision.
+              </p>
+              <p>
+                His journey is built on trust, consistency, innovation, and creating
+                long-term success for individuals and organizations.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* SUCCESS STORIES — below Experience, above About Founder */}
+        <section id="success-stories" className="success-stories">
+          <div className="success-stories-inner">
+            <motion.div
+              className="success-stories-copy"
+              initial={{ opacity: 0, x: -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.35 }}
+            >
+              <h2 className="success-stories-heading">CREATING SUCCESS STORIES</h2>
+              <p>
+                Mr. A. Devagandhan has not only built his own success in the Network
+                Marketing industry but has also empowered thousands of people to achieve
+                financial growth and personal success.
+              </p>
+              <p>
+                Through his guidance, leadership, and mentorship, he continues to inspire
+                individuals to build sustainable businesses, generate consistent income,
+                and create a better future for themselves and their families.
+              </p>
+              <p>
+                His mission is not only to succeed personally, but to help thousands of
+                others succeed alongside him.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="success-stories-visual"
+              initial={{ opacity: 0, x: 70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.15, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.35 }}
+            >
+              <img
+                src={founderSuccess}
+                alt="Mr. A. Devagandhan with luxury car"
+                className="success-stories-image"
+                draggable={false}
+              />
+            </motion.div>
           </div>
         </section>
 
@@ -372,7 +453,9 @@ function App() {
     transition={{ duration: 1 }}
     viewport={{ once: true }}
   >
-            <h2>About Founder</h2>
+            <SectionHeading className="section-heading--about">
+              ABOUT FOUNDER
+            </SectionHeading>
 
             <p>
               Mr. A. Devagandhan is the Founder & CEO of
@@ -391,9 +474,7 @@ function App() {
   className="companies fade-up"
 >
 
-  <h2 className="section-title">
-  Our Companies
-</h2>
+  <SectionHeading>OUR COMPANIES</SectionHeading>
 
   <div className="company-grid">
 
@@ -457,9 +538,7 @@ function App() {
 
   <div className="achievements">
 
-    <h2 className="section-title">
-      Achievements
-    </h2>
+    <SectionHeading>ACHIEVEMENTS</SectionHeading>
 
     <div className="achievement-grid">
 
@@ -504,9 +583,7 @@ function App() {
   </div>
 <section id="gallery" className="gallery fade-up">
 
-  <h2 className="section-title">
-    Gallery
-  </h2>
+  <SectionHeading>GALLERY</SectionHeading>
 
   <div className="gallery-grid">
 
@@ -610,7 +687,12 @@ function App() {
 </footer>
 </section>
       </main>
+    </>
+  )}
 
+  {showSplash && (
+    <SplashScreen onReveal={revealApp} onFinish={finishSplash} />
+  )}
     </>
   );
 }
