@@ -1743,16 +1743,6 @@ letter-spacing:1px;
 
 @media (max-width:768px){
 
-  /* ── Splash ── */
-  .splash-logo{
-    width:min(250px, 66vw);
-  }
-
-  .splash-energy,
-  .splash-energy-ring{
-    width:min(280px, 70vw);
-    height:min(280px, 70vw);
-  }
 
 
   /* ── Navbar + Hamburger Menu ── */
@@ -3005,7 +2995,7 @@ max-width:100%;
         0 0 20px rgba(255,215,0,.5);
 }
 /* ═══════════════════════════════════════════
-   Cinematic studio intro — splash
+   Intro / splash screen — logo on pure black
    ═══════════════════════════════════════════ */
 .splash-screen{
     position:fixed;
@@ -3017,7 +3007,7 @@ max-width:100%;
     z-index:99999;
     overflow:hidden;
     opacity:1;
-    transition:opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+    transition:opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .splash-screen.is-exiting{
@@ -3025,173 +3015,30 @@ max-width:100%;
     pointer-events:none;
 }
 
-.splash-canvas{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:1;
-    pointer-events:none;
-}
-
-.splash-energy{
-    position:absolute;
-    width:min(420px, 78vw);
-    height:min(420px, 78vw);
-    border-radius:50%;
-    z-index:2;
-    pointer-events:none;
-    background:radial-gradient(
-        circle,
-        rgba(255, 236, 170, 0.34) 0%,
-        rgba(255, 215, 0, 0.16) 28%,
-        rgba(140, 95, 20, 0.06) 55%,
-        transparent 72%
-    );
-    filter:blur(6px);
-    opacity:0;
-    transform:scale(0.35);
-}
-
-.splash-energy-ring{
-    position:absolute;
-    width:min(340px, 64vw);
-    height:min(340px, 64vw);
-    border-radius:50%;
-    z-index:2;
-    pointer-events:none;
-    border:1px solid rgba(255, 215, 0, 0.12);
-    box-shadow:
-        0 0 40px rgba(255, 215, 0, 0.08),
-        inset 0 0 40px rgba(255, 215, 0, 0.05);
-    opacity:0;
-    transform:scale(0.55);
-}
-
-/* Sticky class — animation runs once, never restarts */
-.splash-screen.is-gathering .splash-energy{
-    animation:splashEnergyForm 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.75s forwards;
-}
-
-.splash-screen.is-gathering .splash-energy-ring{
-    animation:splashRingForm 2.7s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
-}
-
-.splash-logo-stage{
-    position:relative;
-    z-index:4;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.splash-logo-forge{
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-/*
-  Progressive forge reveal — radial mask expands from darkness.
-  Not a fade. Not a zoom. The mark is carved out of golden light.
-*/
 .splash-logo{
-    width:min(400px, 70vw);
-    max-width:100%;
+    width:clamp(220px, 22vw, 280px);
+    max-width:80vw;
     height:auto;
     display:block;
     opacity:0;
-    clip-path:circle(0% at 50% 52%);
-    will-change:clip-path, filter;
+    transform:scale(0.94);
+    animation:splashLogoIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.splash-logo-sheen{
-    position:absolute;
-    inset:-8%;
-    pointer-events:none;
-    border-radius:50%;
-    background:radial-gradient(
-        circle at 50% 50%,
-        rgba(255, 245, 200, 0.3) 0%,
-        rgba(255, 215, 0, 0.12) 35%,
-        transparent 65%
-    );
-    opacity:0;
-    mix-blend-mode:screen;
+/* Mobile-only logo size — placed after the base rule so it actually wins
+   the cascade at <=768px (an unconditional rule earlier in this file
+   otherwise overrides same-specificity media rules that precede it). */
+@media (max-width:768px){
+  .splash-logo{
+    width:clamp(180px, 50vw, 220px);
+    max-width:75vw;
+  }
 }
 
-.splash-screen.is-forging .splash-logo{
-    opacity:1;
-    animation:splashLogoForge 2.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.splash-screen.is-forging .splash-logo-sheen{
-    animation:splashSheen 2.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes splashEnergyForm{
-    0%{
-        opacity:0;
-        transform:scale(0.35);
-    }
-    55%{
-        opacity:0.95;
-        transform:scale(1.04);
-    }
-    100%{
-        opacity:0.72;
+@keyframes splashLogoIn{
+    to{
+        opacity:1;
         transform:scale(1);
-    }
-}
-
-@keyframes splashRingForm{
-    0%{
-        opacity:0;
-        transform:scale(0.5);
-    }
-    100%{
-        opacity:0.5;
-        transform:scale(1);
-    }
-}
-
-@keyframes splashLogoForge{
-    0%{
-        clip-path:circle(0% at 50% 52%);
-        filter:
-            brightness(2.15)
-            drop-shadow(0 0 30px rgba(255, 230, 150, 0.75))
-            drop-shadow(0 0 64px rgba(255, 215, 0, 0.38));
-    }
-    45%{
-        clip-path:circle(28% at 50% 52%);
-        filter:
-            brightness(1.55)
-            drop-shadow(0 0 24px rgba(255, 215, 0, 0.58))
-            drop-shadow(0 0 52px rgba(212, 175, 55, 0.3));
-    }
-    100%{
-        clip-path:circle(78% at 50% 52%);
-        filter:
-            brightness(1)
-            drop-shadow(0 0 14px rgba(255, 215, 0, 0.3))
-            drop-shadow(0 0 34px rgba(212, 175, 55, 0.16));
-    }
-}
-
-@keyframes splashSheen{
-    0%{
-        opacity:0;
-        transform:scale(0.35);
-    }
-    35%{
-        opacity:0.9;
-        transform:scale(0.85);
-    }
-    100%{
-        opacity:0.15;
-        transform:scale(1.08);
     }
 }
 
