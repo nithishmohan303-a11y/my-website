@@ -331,7 +331,11 @@ function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.15, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
               >
-                DHEERAM GROUP OF COMPANIES
+                <span className="hero-company-line" aria-hidden="true" />
+                <span className="hero-company-text">
+                  DHEERAM GROUP OF COMPANIES
+                </span>
+                <span className="hero-company-line" aria-hidden="true" />
               </motion.h3>
 
               <motion.p
@@ -486,13 +490,16 @@ function App() {
       <p>Innovative products and business opportunities.</p>
     </motion.div>
 
-    <motion.div
+    <motion.a
+      href="https://www.dheeramassociates.com"
+      target="_blank"
+      rel="noreferrer"
       className="company-card"
       whileHover={{ y: -15, scale: 1.05 }}
     >
       <h3>DHEERAM ASSOCIATES</h3>
       <p>Professional consulting and business solutions.</p>
-    </motion.div>
+    </motion.a>
 
     <motion.div
       className="company-card"
@@ -518,13 +525,25 @@ function App() {
     Premium seafood processing, distribution and export services.
   </p>
 </motion.div>
+<motion.a
+  href="https://www.dheeramtech.com"
+  target="_blank"
+  rel="noreferrer"
+  className="company-card"
+  whileHover={{ y: -15, scale: 1.05 }}
+>
+  <h3>DHEERAM TECH</h3>
+  <p>
+    Technology, software development and digital solutions.
+  </p>
+</motion.a>
 <motion.div
   className="company-card"
   whileHover={{ y: -15, scale: 1.05 }}
 >
-  <h3>DHEERAM EVENT MANAGEMENT</h3>
+  <h3>DHEERAM DIGITAL MARKETING AGENCY</h3>
   <p>
-    Professional event planning, corporate events and celebrations.
+    Creative digital marketing, branding and online growth solutions.
   </p>
 </motion.div>
     </div>
@@ -548,7 +567,7 @@ function App() {
   transition={{ duration: 0.3 }}
 >
   <h3><Counter to={1} />+</h3>
-  <p>Years of Excellence</p>
+  <p>YEARS OF EXCELLENCE</p>
 </motion.div>
 
       <motion.div
@@ -575,7 +594,7 @@ function App() {
   transition={{ duration: 0.3 }}
 >
   <h3><Counter to={6} /></h3>
-  <p>Group Companies</p>
+  <p>GROUP COMPANIES</p>
 </motion.div>
 
     </div>
@@ -683,6 +702,10 @@ function App() {
   <p>Building Entrepreneurs • Creating Leaders • Transforming Lives</p>
 
   <p>© 2026 DHEERAM GROUP OF COMPANIES. All Rights Reserved.</p>
+
+  <p className="footer-credit">
+    Designed &amp; Developed by <span className="footer-credit-brand">DHEERAM TECH</span>
+  </p>
 
 </footer>
 </section>

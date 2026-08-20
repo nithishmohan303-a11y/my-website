@@ -578,7 +578,7 @@ section{
   display:block;
   width:max-content;
   max-width:100%;
-  margin:0 0 32px;
+  margin:0 0 14px;
   padding-right:0.14em;
   font-family:"Cinzel", Georgia, serif;
   font-weight:600;
@@ -676,7 +676,7 @@ section{
   gap:18px;
   width:fit-content;
   max-width:100%;
-  margin:0 0 22px;
+  margin:0 0 16px;
   font-size:clamp(0.98rem, 1.38vw, 1.2rem);
   font-weight:800;
   letter-spacing:0.42em;
@@ -724,16 +724,103 @@ section{
 }
 
 .hero-company{
-  margin:0 0 40px;
-  font-size:clamp(0.86rem, 1.15vw, 1.02rem);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  width:fit-content;
+  max-width:100%;
+  margin:0 auto 18px;
+  padding:0;
+}
+
+.hero-company-text{
+  position:relative;
+  display:inline-block;
+  flex-shrink:0;
+  overflow:hidden;
+  padding:0.08em 0.05em;
+  font-family:"Cinzel", Georgia, serif;
+  font-size:clamp(1.02rem, 1.5vw, 1.32rem);
   font-weight:700;
-  letter-spacing:0.22em;
+  letter-spacing:0.16em;
   text-transform:uppercase;
-  color:rgba(250,245,235,.95);
+  white-space:nowrap;
+  background:linear-gradient(
+    115deg,
+    #8a6a1a 0%,
+    #e8c547 20%,
+    #fff6d8 38%,
+    #ffd700 52%,
+    #e8c547 68%,
+    #b8860b 86%,
+    #ffd700 100%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  filter:
+    drop-shadow(0 0 10px rgba(255,215,0,.32))
+    drop-shadow(0 2px 3px rgba(0,0,0,.5));
+}
+
+/* Cinematic light sweep across the metallic lettering */
+.hero-company-text::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.75),
+    transparent
+  );
+  transform:skewX(-25deg);
+  opacity:.4;
+  animation:companyCardShine 6s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.hero-company-line{
+  position:relative;
+  display:block;
+  width:52px;
+  height:1px;
+  overflow:hidden;
+  flex-shrink:0;
+  opacity:.9;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,215,0,.9),
+    transparent
+  );
+}
+
+.hero-company-line::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,215,0,.4),
+    transparent
+  );
+  transform:skewX(-25deg);
+  animation:companyCardShine 0.8s linear infinite;
+  pointer-events:none;
 }
 
 .hero-tagline{
-  margin:0 0 52px;
+  margin:0 0 34px;
   max-width:none;
   font-family:"Cormorant Garamond", Georgia, serif;
   font-size:clamp(1.2rem, 1.75vw, 1.5rem);
@@ -831,6 +918,8 @@ section{
   .hero-name-shine,
   .hero-btn::before,
   .hero-title-line::before,
+  .hero-company-text::before,
+  .hero-company-line::before,
   .section-heading-underline-shine{
     animation:none;
     opacity:0;
@@ -1209,6 +1298,7 @@ display:flex;
 flex-direction:column;
 justify-content:space-between;
 min-height:240px;
+text-decoration:none;
 }
 
 .company-card::before{
@@ -1277,6 +1367,7 @@ letter-spacing:1px;
   color:#d4d4d4;
 
 }
+
 /* ==================================================
    ACHIEVEMENTS
 ================================================== */
@@ -1391,6 +1482,17 @@ letter-spacing:1px;
 
     font-size:16px;
 
+}
+
+.footer-credit{
+    margin-top:6px;
+    font-size:inherit;
+    color:inherit;
+}
+
+.footer-credit-brand{
+    color:#ffd700;
+    font-weight:600;
 }
 /* ==================================================
    SCROLL BAR
@@ -1553,7 +1655,7 @@ letter-spacing:1px;
 
   .hero-name{
     font-size:clamp(1.5rem, 4.5vw, 2.4rem);
-    margin-bottom:28px;
+    margin-bottom:12px;
     letter-spacing:0.07em;
   }
 
@@ -1561,7 +1663,7 @@ letter-spacing:1px;
     font-size:1.01rem;
     letter-spacing:0.36em;
     gap:14px;
-    margin-bottom:20px;
+    margin-bottom:14px;
     font-weight:800;
     color:#f3dc7a;
   }
@@ -1571,15 +1673,22 @@ letter-spacing:1px;
   }
 
   .hero-company{
-    font-size:0.88rem;
+    margin-bottom:16px;
+    gap:16px;
+  }
+
+  .hero-company-text{
+    font-size:0.98rem;
     letter-spacing:0.18em;
-    margin-bottom:36px;
-    color:rgba(250,245,235,.95);
+  }
+
+  .hero-company-line{
+    width:40px;
   }
 
   .hero-tagline{
     font-size:clamp(1.15rem, 2.6vw, 1.4rem);
-    margin-bottom:48px;
+    margin-bottom:30px;
     white-space:nowrap;
   }
 
@@ -1856,6 +1965,7 @@ letter-spacing:1px;
 
   .success-stories-copy{
     text-align:center;
+    order:2;
   }
 
   .success-stories-copy p{
@@ -1865,6 +1975,7 @@ letter-spacing:1px;
 
   .success-stories-visual{
     min-height:0;
+    order:1;
   }
 
   .success-stories-image{
@@ -1907,14 +2018,14 @@ letter-spacing:1px;
   .hero-name{
     font-size:clamp(1.05rem, 5.3vw, 1.55rem);
     letter-spacing:0.05em;
-    margin-bottom:24px;
+    margin-bottom:10px;
   }
 
   .hero-title{
     font-size:0.89rem;
     letter-spacing:0.28em;
     gap:12px;
-    margin-bottom:18px;
+    margin-bottom:12px;
     font-weight:800;
     color:#f3dc7a;
   }
@@ -1924,15 +2035,22 @@ letter-spacing:1px;
   }
 
   .hero-company{
-    font-size:0.78rem;
+    margin-bottom:14px;
+    gap:12px;
+  }
+
+  .hero-company-text{
+    font-size:0.86rem;
     letter-spacing:0.14em;
-    margin-bottom:32px;
-    color:rgba(250,245,235,.95);
+  }
+
+  .hero-company-line{
+    width:28px;
   }
 
   .hero-tagline{
     font-size:clamp(1.05rem, 3.6vw, 1.2rem);
-    margin-bottom:44px;
+    margin-bottom:28px;
     max-width:none;
     white-space:nowrap;
     color:rgba(240,220,160,.96);
@@ -2266,13 +2384,13 @@ letter-spacing:1px;
   .hero-name{
     font-size:clamp(0.95rem, 5.1vw, 1.28rem);
     letter-spacing:0.04em;
-    margin-bottom:20px;
+    margin-bottom:8px;
   }
 
   .hero-title{
     font-size:0.82rem;
     letter-spacing:0.22em;
-    margin-bottom:16px;
+    margin-bottom:10px;
     font-weight:800;
   }
 
@@ -2281,14 +2399,22 @@ letter-spacing:1px;
   }
 
   .hero-company{
-    font-size:0.7rem;
+    margin-bottom:12px;
+    gap:10px;
+  }
+
+  .hero-company-text{
+    font-size:0.74rem;
     letter-spacing:0.12em;
-    margin-bottom:28px;
+  }
+
+  .hero-company-line{
+    width:20px;
   }
 
   .hero-tagline{
     font-size:0.98rem;
-    margin-bottom:40px;
+    margin-bottom:24px;
     white-space:nowrap;
   }
 
@@ -2354,6 +2480,13 @@ letter-spacing:1px;
     gap:30px;
 }
 
+/* Mobile-only: single column so long titles like "Group Companies" never wrap awkwardly */
+@media (max-width:768px){
+  .achievement-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 .achievement-card{
     background:rgba(255,255,255,.05);
     border:1px solid rgba(255,215,0,.20);
@@ -2407,6 +2540,15 @@ letter-spacing:1px;
     line-height:1.4;
     text-align:center;
     margin:0;
+}
+
+/* Mobile-only: white achievement labels (text content itself is uppercase) —
+   overrides the earlier red !important rule scoped to <=480px, without
+   touching desktop/tablet. */
+@media (max-width:768px){
+  .achievement-card p{
+    color:#ffffff !important;
+  }
 }
 
 /* ===========================
