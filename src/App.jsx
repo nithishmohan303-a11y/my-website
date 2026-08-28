@@ -54,7 +54,7 @@ function handleSubmit(e) {
 ${message}`;
 
   const url =
-    `https://wa.me/919629071387?text=${encodeURIComponent(text)}`;
+    `https://wa.me/918438225007?text=${encodeURIComponent(text)}`;
 
   window.open(url, "_blank");
 }
@@ -490,17 +490,6 @@ function App() {
       <p>Innovative products and business opportunities.</p>
     </motion.div>
 
-    <motion.a
-      href="https://www.dheeramassociates.com"
-      target="_blank"
-      rel="noreferrer"
-      className="company-card"
-      whileHover={{ y: -15, scale: 1.05 }}
-    >
-      <h3>DHEERAM ASSOCIATES</h3>
-      <p>Professional consulting and business solutions.</p>
-    </motion.a>
-
     <motion.div
       className="company-card"
       whileHover={{ y: -15, scale: 1.05 }}
@@ -636,21 +625,25 @@ function App() {
     <input
       type="text"
       placeholder="Your Name"
+      required
     />
 
     <input
       type="tel"
       placeholder="Mobile Number"
+      required
     />
 
     <input
       type="email"
       placeholder="Email Address"
+      required
     />
 
     <textarea
       rows="5"
       placeholder="Your Message"
+      required
     ></textarea>
 
     <button
