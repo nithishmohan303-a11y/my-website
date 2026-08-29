@@ -242,7 +242,7 @@ function handleEnquirySubmit(e) {
 💬 Message:
 ${message}`;
 
-  const url = `https://wa.me/918438225007?text=${encodeURIComponent(text)}`;
+  const url = `https://wa.me/919629974707?text=${encodeURIComponent(text)}`;
   window.open(url, "_blank");
 }
 
@@ -497,7 +497,7 @@ export default function DheeramPromoters() {
             <motion.div className="dc-contact-info" {...fadeUp(0.2)}>
               <h3>DHEERAM PROMOTERS</h3>
               <p>A division of Dheeram Group of Companies</p>
-              <p>Founder &amp; CEO: Mr. A. Devagandhan</p>
+              <p>MRS. KAVITHA</p>
               <button
                 type="button"
                 onClick={scrollToEnquiryForm}
