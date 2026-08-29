@@ -18,6 +18,7 @@ import logo from "./images/dheeram.png";
 import SplashScreen from "./components/SplashScreen";
 import DheeramCars from "./pages/DheeramCars";
 import DheeramPromoters from "./pages/DheeramPromoters";
+import DheeramSeaFoods from "./pages/DheeramSeaFoods";
 
 const MotionLink = motion.create(Link);
 function Counter({ from = 0, to }) {
@@ -512,7 +513,8 @@ function Home() {
       <h3>DHEERAM PROMOTERS</h3>
       <p>Real estate development and investment opportunities.</p>
     </MotionLink>
-    <motion.div
+    <MotionLink
+  to="/dheeram-seafoods"
   className="company-card"
   whileHover={{ y: -15, scale: 1.05 }}
 >
@@ -520,7 +522,7 @@ function Home() {
   <p>
     Premium seafood processing, distribution and export services.
   </p>
-</motion.div>
+</MotionLink>
 <motion.a
   href="https://www.dheeramtech.com"
   target="_blank"
@@ -726,6 +728,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/dheeram-cars" element={<DheeramCars />} />
       <Route path="/dheeram-promoters" element={<DheeramPromoters />} />
+      <Route path="/dheeram-seafoods" element={<DheeramSeaFoods />} />
     </Routes>
   );
 }
