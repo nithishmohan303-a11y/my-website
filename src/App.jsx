@@ -1,4 +1,5 @@
 import "./App.css";
+import { createPortal } from "react-dom";
 import profile from "./images/deva.png";
 import founderExperience from "./images/founder-experience.png";
 import founderSuccess from "./images/founder-success.png";
@@ -114,6 +115,7 @@ function Home() {
   const [showSplash, setShowSplash] = useState(!hasSplashPlayed);
   const [appReady, setAppReady] = useState(hasSplashPlayed);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState(null);
   const heroRef = useRef(null);
   const nameRef = useRef(null);
 
@@ -618,6 +620,7 @@ function Home() {
   <div
     key={index}
     className="gallery-item"
+    onClick={() => setLightboxImage(image)}
   >
     <img
       src={image}
@@ -627,6 +630,30 @@ function Home() {
 ))}
 </div>
 </section>
+
+{lightboxImage &&
+  createPortal(
+    <div className="gallery-lightbox" onClick={() => setLightboxImage(null)}>
+      <button
+        type="button"
+        className="gallery-lightbox-close"
+        onClick={(e) => {
+          e.stopPropagation();
+          setLightboxImage(null);
+        }}
+        aria-label="Close image"
+      >
+        &larr;
+      </button>
+      <img
+        src={lightboxImage}
+        alt="Gallery preview"
+        className="gallery-lightbox-image"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </div>,
+    document.body
+  )}
 
   <div id="contact" className="contact">
 
