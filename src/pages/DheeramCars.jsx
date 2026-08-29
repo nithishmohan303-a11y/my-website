@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Background from "../components/Background";
 import SectionHeading from "../components/SectionHeading";
 import bmwHero from "../images/bmw-hero.jpg";
+import bmwMobileHero from "../images/bmw-mobile-hero.png";
 import "./DheeramCars.css";
 
 const NAV_LINKS = [
@@ -333,11 +334,14 @@ export default function DheeramCars() {
       <main className="dc-main">
         {/* HERO */}
         <section className="dc-hero">
-          <img
-            src={bmwHero}
-            alt="BMW — Dheeram Cars"
-            className="dc-hero-bg"
-          />
+          <picture>
+            <source media="(max-width: 768px)" srcSet={bmwMobileHero} />
+            <img
+              src={bmwHero}
+              alt="BMW — Dheeram Cars"
+              className="dc-hero-bg"
+            />
+          </picture>
           <div className="dc-hero-overlay" aria-hidden="true" />
 
           <div className="dc-hero-content">
