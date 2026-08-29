@@ -664,6 +664,14 @@
   .dc-contact-grid {
     grid-template-columns: 1fr;
   }
+
+  .dc-contact-info {
+    order: -1;
+  }
+
+  .dc-enquiry-form {
+    order: 2;
+  }
 }
 
 @media (max-width: 768px) {
@@ -677,11 +685,18 @@
   }
 
   .dc-hero-bg {
-    object-position: center 25%;
+    object-fit: contain;
+    object-position: center center;
   }
 
   .dc-hero-content {
     gap: 20px;
+  }
+
+  .dc-hero-title {
+    font-size: clamp(26px, 8.5vw, 40px);
+    letter-spacing: 2px;
+    white-space: nowrap;
   }
 
   .dc-hero-ctas {
@@ -696,6 +711,10 @@
 
   .dc-section {
     padding: 80px 6%;
+  }
+
+  .dc-contact-info {
+    padding: 30px 24px;
   }
 
   .dc-footer {
