@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Background from "../components/Background";
+import BackButton from "../components/BackButton";
 import SectionHeading from "../components/SectionHeading";
 import seafoodsHero from "../images/seafoods-hero.jpg";
 import seafoodsMobileHero from "../images/seafoods-mobile-hero.png";
@@ -265,7 +266,7 @@ export default function DheeramSeaFoods() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (location.hash) {
       navigate(location.pathname, { replace: true });
     }
@@ -276,6 +277,7 @@ export default function DheeramSeaFoods() {
   return (
     <div className="dc-page">
       <Background />
+      <BackButton />
 
       <nav className="dc-navbar">
         <Link to="/" className="dc-brand" onClick={closeMenu}>

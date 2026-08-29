@@ -19,6 +19,7 @@ import SplashScreen from "./components/SplashScreen";
 import DheeramCars from "./pages/DheeramCars";
 import DheeramPromoters from "./pages/DheeramPromoters";
 import DheeramSeaFoods from "./pages/DheeramSeaFoods";
+import DheeramDigitalMarketing from "./pages/DheeramDigitalMarketing";
 
 const MotionLink = motion.create(Link);
 function Counter({ from = 0, to }) {
@@ -105,9 +106,13 @@ const HERO_PARTICLES = (() => {
   return list;
 })();
 
+/* Splash should only play on the site's true first load, not on every
+   in-app remount of Home (e.g. via the company-page BACK button). */
+let hasSplashPlayed = false;
+
 function Home() {
-  const [showSplash, setShowSplash] = useState(true);
-  const [appReady, setAppReady] = useState(false);
+  const [showSplash, setShowSplash] = useState(!hasSplashPlayed);
+  const [appReady, setAppReady] = useState(hasSplashPlayed);
   const [menuOpen, setMenuOpen] = useState(false);
   const heroRef = useRef(null);
   const nameRef = useRef(null);
@@ -122,7 +127,10 @@ function Home() {
   ];
 
   /* Reveal hero under the splash so the fade-out is seamless */
-  const revealApp = () => setAppReady(true);
+  const revealApp = () => {
+    hasSplashPlayed = true;
+    setAppReady(true);
+  };
   const finishSplash = () => setShowSplash(false);
 
   useEffect(() => {
@@ -131,6 +139,7 @@ function Home() {
       document.body.style.overflow = "";
     };
   }, [showSplash, menuOpen]);
+
 
   /* Fit founder name to available width — never crop */
   useEffect(() => {
@@ -492,7 +501,7 @@ function Home() {
       className="company-card"
       whileHover={{ y: -15, scale: 1.05 }}
     >
-      <h3>DHEERAM MART</h3>
+      <h3>DHEERAM PRO</h3>
       <p>Innovative products and business opportunities.</p>
     </motion.div>
 
@@ -535,15 +544,16 @@ function Home() {
     Technology, software development and digital solutions.
   </p>
 </motion.a>
-<motion.div
+<MotionLink
+  to="/dheeram-digital-marketing"
   className="company-card"
   whileHover={{ y: -15, scale: 1.05 }}
 >
-  <h3>DHEERAM DIGITAL MARKETING AGENCY</h3>
+  <h3>DHEERAM DIGITAL MARKETING</h3>
   <p>
     Creative digital marketing, branding and online growth solutions.
   </p>
-</motion.div>
+</MotionLink>
     </div>
 
 </section>
@@ -729,6 +739,7 @@ function App() {
       <Route path="/dheeram-cars" element={<DheeramCars />} />
       <Route path="/dheeram-promoters" element={<DheeramPromoters />} />
       <Route path="/dheeram-seafoods" element={<DheeramSeaFoods />} />
+      <Route path="/dheeram-digital-marketing" element={<DheeramDigitalMarketing />} />
     </Routes>
   );
 }

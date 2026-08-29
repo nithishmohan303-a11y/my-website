@@ -4,61 +4,62 @@ import { motion } from "framer-motion";
 import Background from "../components/Background";
 import BackButton from "../components/BackButton";
 import SectionHeading from "../components/SectionHeading";
-import promotersHero from "../images/promoters-hero.jpg";
-import promotersMobileHero from "../images/promoters-mobile-hero.png";
-import "./DheeramPromoters.css";
+import digitalMarketingHero from "../images/digital-marketing-hero.jpg";
+import digitalMarketingMobileHero from "../images/digital-marketing-mobile-hero.png";
+import "./DheeramDigitalMarketing.css";
+
 const NAV_LINKS = [
   { label: "HOME", href: "/", isRoute: true },
-  { label: "PROJECTS", href: "#projects" },
-  { label: "ABOUT", href: "#about-promoters" },
-  { label: "CONTACT", href: "#contact-promoters" },
+  { label: "SERVICES", href: "#services" },
+  { label: "ABOUT", href: "#about-digital" },
+  { label: "CONTACT", href: "#contact-digital" },
 ];
 
-const PROJECT_CATEGORIES = [
+const SERVICE_CATEGORIES = [
   {
-    id: "plots",
-    name: "Residential Plots",
+    id: "content",
+    name: "Content Creation",
     description:
-      "Well-planned, DTCP-approved layouts designed for secure, long-term investment.",
+      "Compelling written, visual and video content crafted to connect with your audience.",
   },
   {
-    id: "villas",
-    name: "Premium Villas",
+    id: "research",
+    name: "Marketing Research",
     description:
-      "Spacious, thoughtfully designed villas that bring comfort and elegance together.",
+      "In-depth market and audience insights that inform smarter marketing decisions.",
   },
   {
-    id: "apartments",
-    name: "Apartments & Flats",
+    id: "analysis",
+    name: "Business Analysis",
     description:
-      "Modern living spaces built for convenience, community and everyday comfort.",
+      "Clear analysis of performance and opportunity to guide effective growth strategies.",
   },
   {
-    id: "commercial",
-    name: "Commercial Spaces",
+    id: "strategy",
+    name: "Strategy and Planning",
     description:
-      "Strategically located commercial properties suited for growing businesses.",
+      "Structured marketing plans that align every campaign with your business goals.",
   },
 ];
 
 const WHY_CHOOSE_US = [
   {
-    id: "selection",
-    title: "Prime Locations",
+    id: "creative",
+    title: "Creative Excellence",
     description:
-      "Carefully selected sites chosen for connectivity, growth potential and lasting value.",
+      "Ideas and design crafted to help your brand stand out in a crowded digital space.",
   },
   {
     id: "trusted",
-    title: "Trusted Development",
+    title: "Trusted Team",
     description:
       "Backed by the Dheeram Group's reputation for integrity, transparency and dependable delivery.",
   },
   {
-    id: "experience",
-    title: "Professional Guidance",
+    id: "results",
+    title: "Result-Oriented Approach",
     description:
-      "A knowledgeable team supporting you from site selection through to registration.",
+      "Strategies focused on measurable growth, engagement and return on investment.",
   },
   {
     id: "customer",
@@ -68,7 +69,7 @@ const WHY_CHOOSE_US = [
   },
 ];
 
-function BuildingGlyph() {
+function MegaphoneGlyph() {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -76,37 +77,30 @@ function BuildingGlyph() {
       xmlns="http://www.w3.org/2000/svg"
       className="dc-icon-svg"
     >
-      <rect
-        x="14"
-        y="10"
-        width="24"
-        height="46"
-        rx="2"
+      <path
+        d="M8 26v12l10 3V23z"
         stroke="currentColor"
         strokeWidth="2.2"
-      />
-      <rect
-        x="38"
-        y="26"
-        width="16"
-        height="30"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="2.2"
+        strokeLinejoin="round"
       />
       <path
-        d="M20 18h4M28 18h4M20 26h4M28 26h4M20 34h4M28 34h4M20 42h4M28 42h4"
+        d="M18 23l26-12v42l-26-12z"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 41l3 11h6l-2-10"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M50 22c3 3 3 17 0 20"
         stroke="currentColor"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
-      <path
-        d="M44 32h4M44 40h4M44 48h4"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-      <path d="M10 56h44" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -161,7 +155,7 @@ function ShieldGlyph() {
   );
 }
 
-function CompassGlyph() {
+function ChartGlyph() {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -169,11 +163,23 @@ function CompassGlyph() {
       xmlns="http://www.w3.org/2000/svg"
       className="dc-icon-svg"
     >
-      <circle cx="32" cy="32" r="24" stroke="currentColor" strokeWidth="2.2" />
       <path
-        d="M40 24l-6 12-12 6 6-12z"
+        d="M8 52h48"
         stroke="currentColor"
         strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14 52V34M26 52V22M38 52V30M50 52V14"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14 30l12-10 12 8 12-16"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>
@@ -207,9 +213,9 @@ function HandshakeGlyph() {
 }
 
 const WHY_ICONS = {
-  selection: CompassGlyph,
+  creative: BadgeGlyph,
   trusted: ShieldGlyph,
-  experience: BadgeGlyph,
+  results: ChartGlyph,
   customer: HandshakeGlyph,
 };
 
@@ -226,11 +232,11 @@ function handleEnquirySubmit(e) {
   const name = form.name.value;
   const phone = form.phone.value;
   const email = form.email.value;
-  const projectInterest = form.projectInterest.value;
+  const serviceInterest = form.serviceInterest.value;
   const message = form.message.value;
 
   const text =
-`*New Dheeram Promoters Enquiry*
+`*New Dheeram Digital Marketing Enquiry*
 
 👤 Name: ${name}
 
@@ -238,18 +244,18 @@ function handleEnquirySubmit(e) {
 
 📧 Email: ${email}
 
-🏢 Project Interested In: ${projectInterest}
+📈 Service Interested In: ${serviceInterest}
 
 💬 Message:
 ${message}`;
 
-  const url = `https://wa.me/919629974707?text=${encodeURIComponent(text)}`;
+  const url = `https://wa.me/919361406967?text=${encodeURIComponent(text)}`;
   window.open(url, "_blank");
 }
 
 function scrollToEnquiryForm() {
   document
-    .getElementById("dp-enquiry-form")
+    .getElementById("dm-enquiry-form")
     ?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -260,7 +266,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
-export default function DheeramPromoters() {
+export default function DheeramDigitalMarketing() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
   const location = useLocation();
@@ -281,7 +287,7 @@ export default function DheeramPromoters() {
 
       <nav className="dc-navbar">
         <Link to="/" className="dc-brand" onClick={closeMenu}>
-          DHEERAM <span className="dc-brand-accent">PROMOTERS</span>
+          DHEERAM <span className="dc-brand-accent">DIGITAL MARKETING</span>
         </Link>
 
         <ul className="dc-nav-links dc-nav-links--desktop">
@@ -298,7 +304,7 @@ export default function DheeramPromoters() {
           )}
         </ul>
 
-        <a href="#contact-promoters" className="dc-enquire-btn dc-enquire-btn--desktop">
+        <a href="#contact-digital" className="dc-enquire-btn dc-enquire-btn--desktop">
           ENQUIRE NOW
         </a>
 
@@ -332,94 +338,65 @@ export default function DheeramPromoters() {
               )
             )}
           </ul>
-          <a href="#contact-promoters" className="dc-enquire-btn" onClick={closeMenu}>
+          <a href="#contact-digital" className="dc-enquire-btn" onClick={closeMenu}>
             ENQUIRE NOW
           </a>
         </div>
       </nav>
 
       <main className="dc-main">
-        {/* HERO */}
-        <section className="dc-hero">
+        {/* HERO — image already contains the brand title/visual, so no overlay or heading is added here */}
+        <section className="dc-hero dc-hero--digital">
           <picture>
-            <source media="(max-width: 768px)" srcSet={promotersMobileHero} />
+            <source media="(max-width: 768px)" srcSet={digitalMarketingMobileHero} />
             <img
-              src={promotersHero}
-              alt="Dheeram Promoters"
+              src={digitalMarketingHero}
+              alt="Dheeram Digital Marketing"
               className="dc-hero-bg"
             />
           </picture>
-          <div className="dc-hero-overlay" aria-hidden="true" />
 
-          <div className="dc-hero-content">
-            <motion.h1
-              className="dc-hero-title"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              DHEERAM PROMOTERS
-            </motion.h1>
-
-            <motion.h2
-              className="dc-hero-headline"
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            >
-              BUILD THE EXTRAORDINARY
-            </motion.h2>
-
-            <motion.p
-              className="dc-hero-subtitle"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Premium Projects • Trusted Development • Excellence
-            </motion.p>
-
+          <div className="dc-hero-content dc-hero-content--digital">
             <motion.div
               className="dc-hero-ctas"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
-              <a href="#projects" className="dc-cta dc-cta--primary">
-                EXPLORE PROJECTS
+              <a href="#services" className="dc-cta dc-cta--primary">
+                EXPLORE SERVICES
               </a>
-              <a href="#contact-promoters" className="dc-cta dc-cta--secondary">
+              <a href="#contact-digital" className="dc-cta dc-cta--secondary">
                 CONTACT US
               </a>
             </motion.div>
           </div>
         </section>
 
-        {/* EXPLORE OUR PROJECTS */}
-        <section id="projects" className="dc-section dc-cars-section">
+        {/* SERVICES */}
+        <section id="services" className="dc-section dc-cars-section">
           <motion.div {...fadeUp(0)}>
-            <SectionHeading>EXPLORE OUR PROJECTS</SectionHeading>
+            <SectionHeading>OUR SERVICES</SectionHeading>
             <p className="dc-section-intro">
-              A refined portfolio spanning plots, villas, apartments and
-              commercial spaces — each selected to deliver location,
-              quality and lasting value.
+              A complete range of digital marketing services designed to
+              grow your brand, reach and results online.
             </p>
           </motion.div>
 
           <div className="dc-cars-grid">
-            {PROJECT_CATEGORIES.map((project, i) => (
+            {SERVICE_CATEGORIES.map((item, i) => (
               <motion.div
-                key={project.id}
+                key={item.id}
                 className="dc-car-card"
                 {...fadeUp(0.1 + i * 0.1)}
                 whileHover={{ y: -10 }}
               >
                 <div className="dc-car-card-visual">
-                  <BuildingGlyph />
+                  <MegaphoneGlyph />
                 </div>
-                <h3 className="dc-car-card-title">{project.name}</h3>
-                <p className="dc-car-card-desc">{project.description}</p>
-                <a href="#contact-promoters" className="dc-car-card-cta">
+                <h3 className="dc-car-card-title">{item.name}</h3>
+                <p className="dc-car-card-desc">{item.description}</p>
+                <a href="#contact-digital" className="dc-car-card-cta">
                   Enquire Now &rarr;
                 </a>
               </motion.div>
@@ -428,7 +405,7 @@ export default function DheeramPromoters() {
         </section>
 
         {/* WHY CHOOSE US */}
-        <section className="dc-section dc-why-section">
+        <section id="about-digital" className="dc-section dc-why-section">
           <motion.div {...fadeUp(0)}>
             <SectionHeading>WHY CHOOSE US</SectionHeading>
           </motion.div>
@@ -455,7 +432,7 @@ export default function DheeramPromoters() {
         </section>
 
         {/* CONTACT / ENQUIRY */}
-        <section id="contact-promoters" className="dc-section dc-contact-section">
+        <section id="contact-digital" className="dc-section dc-contact-section">
           <motion.div {...fadeUp(0)}>
             <SectionHeading>ENQUIRE NOW</SectionHeading>
             <p className="dc-section-intro">
@@ -466,7 +443,7 @@ export default function DheeramPromoters() {
 
           <div className="dc-contact-grid">
             <motion.form
-              id="dp-enquiry-form"
+              id="dm-enquiry-form"
               className="dc-enquiry-form"
               onSubmit={handleEnquirySubmit}
               {...fadeUp(0.1)}
@@ -474,13 +451,13 @@ export default function DheeramPromoters() {
               <input type="text" name="name" placeholder="Your Name" required />
               <input type="tel" name="phone" placeholder="Phone Number" required />
               <input type="email" name="email" placeholder="Email Address" required />
-              <select name="projectInterest" defaultValue="" required>
+              <select name="serviceInterest" defaultValue="" required>
                 <option value="" disabled>
-                  Project Interested In
+                  Service Interested In
                 </option>
-                {PROJECT_CATEGORIES.map((project) => (
-                  <option key={project.id} value={project.name}>
-                    {project.name}
+                {SERVICE_CATEGORIES.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
                   </option>
                 ))}
                 <option value="Not Sure Yet">Not Sure Yet</option>
@@ -497,9 +474,9 @@ export default function DheeramPromoters() {
             </motion.form>
 
             <motion.div className="dc-contact-info" {...fadeUp(0.2)}>
-              <h3>DHEERAM PROMOTERS</h3>
+              <h3>DHEERAM DIGITAL MARKETING</h3>
               <p>A division of Dheeram Group of Companies</p>
-              <p>MRS. KAVITHA</p>
+              <p>MR. ARUNKUMAR</p>
               <button
                 type="button"
                 onClick={scrollToEnquiryForm}
