@@ -13,8 +13,12 @@ import GoldDust from "./components/GoldDust";
 import SectionHeading from "./components/SectionHeading";
 import { motion, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import logo from "./images/dheeram.png";
 import SplashScreen from "./components/SplashScreen";
+import DheeramCars from "./pages/DheeramCars";
+
+const MotionLink = motion.create(Link);
 function Counter({ from = 0, to }) {
   const [value, setValue] = useState(from);
 
@@ -99,7 +103,7 @@ const HERO_PARTICLES = (() => {
   return list;
 })();
 
-function App() {
+function Home() {
   const [showSplash, setShowSplash] = useState(true);
   const [appReady, setAppReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -490,13 +494,14 @@ function App() {
       <p>Innovative products and business opportunities.</p>
     </motion.div>
 
-    <motion.div
+    <MotionLink
+      to="/dheeram-cars"
       className="company-card"
       whileHover={{ y: -15, scale: 1.05 }}
     >
       <h3>DHEERAM CARS</h3>
       <p>Premium automobile and transport services.</p>
-    </motion.div>
+    </MotionLink>
 
     <motion.div
       className="company-card"
@@ -710,6 +715,15 @@ function App() {
     <SplashScreen onReveal={revealApp} onFinish={finishSplash} />
   )}
     </>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dheeram-cars" element={<DheeramCars />} />
+    </Routes>
   );
 }
 
