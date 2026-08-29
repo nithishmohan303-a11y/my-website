@@ -17,6 +17,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import logo from "./images/dheeram.png";
 import SplashScreen from "./components/SplashScreen";
 import DheeramCars from "./pages/DheeramCars";
+import DheeramPromoters from "./pages/DheeramPromoters";
 
 const MotionLink = motion.create(Link);
 function Counter({ from = 0, to }) {
@@ -503,13 +504,14 @@ function Home() {
       <p>Premium automobile and transport services.</p>
     </MotionLink>
 
-    <motion.div
+    <MotionLink
+      to="/dheeram-promoters"
       className="company-card"
       whileHover={{ y: -15, scale: 1.05 }}
     >
       <h3>DHEERAM PROMOTERS</h3>
       <p>Real estate development and investment opportunities.</p>
-    </motion.div>
+    </MotionLink>
     <motion.div
   className="company-card"
   whileHover={{ y: -15, scale: 1.05 }}
@@ -723,6 +725,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/dheeram-cars" element={<DheeramCars />} />
+      <Route path="/dheeram-promoters" element={<DheeramPromoters />} />
     </Routes>
   );
 }
