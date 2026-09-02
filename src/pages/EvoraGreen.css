@@ -786,7 +786,7 @@
   }
 
   .dc-hero--product {
-    padding: 90px 0 0;
+    padding: 130px 0 40px;
     min-height: 0;
   }
 
@@ -798,12 +798,15 @@
   }
 
   .dc-hero-product-wrap {
-    min-height: 560px;
+    min-height: 0;
   }
 
   .dc-hero-product-wrap .dc-hero-content {
+    position: static;
+    inset: auto;
     justify-content: flex-start;
-    padding-top: 40px;
+    padding: 24px 6% 0;
+    margin: 0;
   }
 
   .dc-hero-content {
