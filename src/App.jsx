@@ -604,7 +604,7 @@ function Home() {
   transition={{ duration: 0.3 }}
 >
   <h3><Counter to={5000} />+</h3>
-  <p>PRIME MEMBERS</p>
+  <p>PRIME MEMBERSHIP</p>
 </motion.div>
 
       <motion.div
@@ -612,7 +612,7 @@ function Home() {
   whileHover={{ y: -15, scale: 1.05 }}
   transition={{ duration: 0.3 }}
 >
-  <h3><Counter to={6} /></h3>
+  <h3><Counter to={7} /></h3>
   <p>GROUP COMPANIES</p>
 </motion.div>
 
