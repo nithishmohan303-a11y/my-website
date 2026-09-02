@@ -21,6 +21,7 @@ import DheeramCars from "./pages/DheeramCars";
 import DheeramPromoters from "./pages/DheeramPromoters";
 import DheeramSeaFoods from "./pages/DheeramSeaFoods";
 import DheeramDigitalMarketing from "./pages/DheeramDigitalMarketing";
+import EvoraGreen from "./pages/EvoraGreen";
 
 const MotionLink = motion.create(Link);
 function Counter({ from = 0, to }) {
@@ -556,6 +557,14 @@ function Home() {
     Creative digital marketing, branding and online growth solutions.
   </p>
 </MotionLink>
+<MotionLink
+  to="/evora-green"
+  className="company-card"
+  whileHover={{ y: -15, scale: 1.05 }}
+>
+  <h3>EVORA GREEN</h3>
+  <p>Sustainable and eco-friendly business solutions.</p>
+</MotionLink>
     </div>
 
 </section>
@@ -767,6 +776,7 @@ function App() {
       <Route path="/dheeram-promoters" element={<DheeramPromoters />} />
       <Route path="/dheeram-seafoods" element={<DheeramSeaFoods />} />
       <Route path="/dheeram-digital-marketing" element={<DheeramDigitalMarketing />} />
+      <Route path="/evora-green" element={<EvoraGreen />} />
     </Routes>
   );
 }
